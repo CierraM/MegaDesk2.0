@@ -29,26 +29,23 @@ namespace MegaDesk_Morris
         /// </summary>
         private void InitializeComponent()
         {
-            this.cancelBtn = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // cancelBtn
+            // comboBox1
             // 
-            this.cancelBtn.Font = new System.Drawing.Font("Yu Gothic Light", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelBtn.Location = new System.Drawing.Point(525, 346);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(183, 63);
-            this.cancelBtn.TabIndex = 2;
-            this.cancelBtn.Text = "Cancel";
-            this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(395, 148);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(584, 21);
+            this.comboBox1.TabIndex = 3;
             // 
             // SearchQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cancelBtn);
+            this.ClientSize = new System.Drawing.Size(1442, 686);
+            this.Controls.Add(this.comboBox1);
             this.Name = "SearchQuotes";
             this.Text = "SearchQuotes";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SearchQuotes_FormClosed);
@@ -58,6 +55,6 @@ namespace MegaDesk_Morris
 
         #endregion
 
-        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

@@ -21,6 +21,8 @@ namespace MegaDesk_Morris
         public Desk QuoteDesk { get; set; }
         public rushOption Shipping { get; set; }
 
+        public Decimal Price { get; set; }
+
         public decimal CalculatePrice()
         {
             decimal price = 0;

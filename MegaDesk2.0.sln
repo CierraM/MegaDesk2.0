@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaDesk-Morris", "MegaDesk-Morris\MegaDesk-Morris.csproj", "{0BC17E1D-4702-48A9-9B9F-525570E80F01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaDesk2.0", "MegaDesk2.0\MegaDesk2.0.csproj", "{0BC17E1D-4702-48A9-9B9F-525570E80F01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
