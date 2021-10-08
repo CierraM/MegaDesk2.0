@@ -25,33 +25,7 @@ namespace MegaDesk_Morris
             base.Dispose(disposing);
         }
 
-        private void loadGrid()
-        {
-            //name of file, which is stored in bin
-            var quotesFile = "";
-
-            if (File.Exists(quotesFile))
-            {
-                using (StreamReader reader = new StreamReader(quotesFile))
-                {
-                    //read the file
-                    string quotes = reader.ReadToEnd();
-                    //Turn it into a list so it can go into the grid
-                    List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
-                    //loop through json to make a bunch of objects to use as the source for the grid.
-                    //Select requires using linq at the top of the file
-                    dataGridView1.DataSource = deskQuotes.Select(d => new
-                    {
-                        //create a new object
-                        date = d.Date,
-                        depth = d.QuoteDesk.Width,
-                        quotePrice = d.Price.ToString("c") //format the price
-                        //etc
-                    }).ToList();
-
-                }
-            }
-        }
+        
 
         #region Windows Form Designer generated code
 
@@ -62,6 +36,7 @@ namespace MegaDesk_Morris
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.error = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,22 +50,34 @@ namespace MegaDesk_Morris
             this.dataGridView1.Size = new System.Drawing.Size(1248, 676);
             this.dataGridView1.TabIndex = 2;
             // 
+            // error
+            // 
+            this.error.AutoSize = true;
+            this.error.ForeColor = System.Drawing.Color.DarkRed;
+            this.error.Location = new System.Drawing.Point(1148, 56);
+            this.error.Name = "error";
+            this.error.Size = new System.Drawing.Size(0, 13);
+            this.error.TabIndex = 3;
+            // 
             // ViewAllQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 676);
+            this.Controls.Add(this.error);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ViewAllQuotes";
             this.Text = "ViewAllQuotes";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ViewAllQuotes_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label error;
     }
 }

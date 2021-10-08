@@ -29,26 +29,13 @@ namespace MegaDesk_Morris
         /// </summary>
         private void InitializeComponent()
         {
-            this.cancelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // cancelBtn
-            // 
-            this.cancelBtn.Font = new System.Drawing.Font("Yu Gothic Light", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelBtn.Location = new System.Drawing.Point(527, 358);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(183, 63);
-            this.cancelBtn.TabIndex = 1;
-            this.cancelBtn.Text = "Cancel";
-            this.cancelBtn.UseVisualStyleBackColor = true;
-            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // DisplayQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cancelBtn);
+            this.ClientSize = new System.Drawing.Size(1250, 650);
             this.Name = "DisplayQuote";
             this.Text = "DisplayQuote";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DisplayQuote_FormClosed);
@@ -57,7 +44,5 @@ namespace MegaDesk_Morris
         }
 
         #endregion
-
-        private System.Windows.Forms.Button cancelBtn;
     }
 }

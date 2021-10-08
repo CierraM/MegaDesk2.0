@@ -70,7 +70,7 @@ namespace MegaDesk_Morris
             this.firstNameLabel.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstNameLabel.Location = new System.Drawing.Point(61, 90);
             this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(95, 18);
+            this.firstNameLabel.Size = new System.Drawing.Size(171, 35);
             this.firstNameLabel.TabIndex = 1;
             this.firstNameLabel.Text = "First Name:";
             // 
@@ -88,7 +88,7 @@ namespace MegaDesk_Morris
             this.label1.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(61, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 18);
+            this.label1.Size = new System.Drawing.Size(168, 35);
             this.label1.TabIndex = 5;
             this.label1.Text = "Last Name:";
             // 
@@ -98,7 +98,7 @@ namespace MegaDesk_Morris
             this.label3.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(61, 208);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 18);
+            this.label3.Size = new System.Drawing.Size(234, 35);
             this.label3.TabIndex = 6;
             this.label3.Text = "Desk Width (in):";
             // 
@@ -108,7 +108,7 @@ namespace MegaDesk_Morris
             this.label4.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(61, 267);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(134, 18);
+            this.label4.Size = new System.Drawing.Size(246, 35);
             this.label4.TabIndex = 7;
             this.label4.Text = "Desk Depth (in): ";
             // 
@@ -118,7 +118,7 @@ namespace MegaDesk_Morris
             this.label5.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(61, 385);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 18);
+            this.label5.Size = new System.Drawing.Size(286, 35);
             this.label5.TabIndex = 8;
             this.label5.Text = "Number of Drawers:";
             // 
@@ -128,7 +128,7 @@ namespace MegaDesk_Morris
             this.label6.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(61, 326);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 18);
+            this.label6.Size = new System.Drawing.Size(238, 35);
             this.label6.TabIndex = 9;
             this.label6.Text = "Surface Material";
             // 
@@ -138,7 +138,7 @@ namespace MegaDesk_Morris
             this.label7.Font = new System.Drawing.Font("Yu Gothic Medium", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(61, 444);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 18);
+            this.label7.Size = new System.Drawing.Size(190, 35);
             this.label7.TabIndex = 10;
             this.label7.Text = "Rush Option:";
             // 
@@ -231,6 +231,7 @@ namespace MegaDesk_Morris
             this.getQuoteBtn.TabIndex = 18;
             this.getQuoteBtn.Text = "Get Quote";
             this.getQuoteBtn.UseVisualStyleBackColor = true;
+            this.getQuoteBtn.Click += new System.EventHandler(this.getQuoteBtn_Click);
             // 
             // label8
             // 
@@ -238,7 +239,7 @@ namespace MegaDesk_Morris
             this.label8.Font = new System.Drawing.Font("Yu Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(58, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(149, 35);
+            this.label8.Size = new System.Drawing.Size(292, 69);
             this.label8.TabIndex = 19;
             this.label8.Text = "Add Quote";
             // 

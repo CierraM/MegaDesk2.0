@@ -39,5 +39,20 @@ namespace MegaDesk_Morris
             this.Close();
         }
 
+        private void getQuoteBtn_Click(object sender, EventArgs e)
+        {
+            var desk = new Desk();
+            var deskQuote = new DeskQuote();
+            desk.Width = (int) deskWidthInput.Value;
+            desk.Depth = (int) deskDepthInput.Value;
+            desk.SurfaceMaterial = (DesktopMaterial) surfaceMaterialSelect.SelectedValue;
+            desk.NumberOfDrawers = (int) numberOfDrawersSelect.Value;
+
+            deskQuote.QuoteDesk = desk;
+            deskQuote.FirstName = firstNameInput.Text;
+            deskQuote.LastName = lastNameInput.Text;
+            deskQuote.Date = DateTime.Now;
+            deskQuote.Shipping = (rushOption) shippingSelect.SelectedValue;
+        }
     }
 }

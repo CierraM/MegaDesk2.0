@@ -17,8 +17,8 @@ namespace MegaDesk_Morris
     }
     public class Desk
     {
-        public decimal Width { get; set; }
-        public decimal Height { get; set; }
+        public int Width { get; set; }
+        public int Depth { get; set; }
         public  int NumberOfDrawers { get; set; }
         public DesktopMaterial SurfaceMaterial { get; set; }
         public decimal SurfaceArea { get; set; }

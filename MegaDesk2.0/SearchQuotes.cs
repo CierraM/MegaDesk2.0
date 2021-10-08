@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace MegaDesk_Morris
         public SearchQuotes()
         {
             InitializeComponent();
+            
         }
 
         private void SearchQuotes_FormClosed(object sender, FormClosedEventArgs e)
@@ -26,5 +29,7 @@ namespace MegaDesk_Morris
         {
             this.Close();
         }
+
+        
     }
 }
