@@ -53,6 +53,13 @@ namespace MegaDesk_Morris
             deskQuote.LastName = lastNameInput.Text;
             deskQuote.Date = DateTime.Now;
             deskQuote.Shipping = (rushOption) shippingSelect.SelectedValue;
+
+            //TODO:
+            //pull prices from price file
+
+            //calculate price
+
+            //store quote in file
         }
     }
 }
