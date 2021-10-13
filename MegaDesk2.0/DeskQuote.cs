@@ -23,11 +23,6 @@ namespace MegaDesk_Morris
 
         public Decimal Price { get; set; }
 
-        public decimal CalculatePrice()
-        {
-            decimal price = 0;
-
-            return price;
-        }
+        
     }
 }

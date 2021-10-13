@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace MegaDesk_Morris
             var deskQuote = new DeskQuote();
             desk.Width = (int) deskWidthInput.Value;
             desk.Depth = (int) deskDepthInput.Value;
-            desk.SurfaceMaterial = (DesktopMaterial) surfaceMaterialSelect.SelectedValue;
+            desk.SurfaceMaterial = (DesktopMaterial)surfaceMaterialSelect.SelectedValue;
             desk.NumberOfDrawers = (int) numberOfDrawersSelect.Value;
 
             deskQuote.QuoteDesk = desk;
@@ -56,7 +57,31 @@ namespace MegaDesk_Morris
 
             //TODO:
             //pull prices from price file
+            var priceFile = "RushOrderPrices.txt";
+            
+            if (File.Exists(priceFile))
+            {
 
+                using (StreamReader reader = new StreamReader(priceFile))
+                {
+                    
+                    int[,] prices = new int[3,3];
+                    for (int i = 0; i < 3; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                        {
+                            string line = reader.ReadLine();
+                            int price = int.Parse(line);
+                            prices[i, j] = price;
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+
+            }
             //calculate price
 
             //store quote in file
