@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -100,6 +101,21 @@ namespace MegaDesk_Morris
             //question: how to link the double array up to the user's input??
 
             //store quote in file
+            string quotesFile = "deskQuotes.json";
+            MemoryStream quotesStream = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DeskQuote));
+            ser.WriteObject(quotesStream, deskQuote);
+
+            if (File.Exists(quotesFile))
+            {
+                //append to file
+
+            } else
+            {
+                //create new file
+                
+
+            }
         }
     }
 }
