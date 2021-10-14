@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace MegaDesk_Morris
 {
@@ -56,51 +57,21 @@ namespace MegaDesk_Morris
             deskQuote.Date = DateTime.Now;
             deskQuote.Shipping = (rushOption) shippingSelect.SelectedValue;
 
+            deskQuote.Price = deskQuote.calcPrice();
+            this.saveToFile(deskQuote);
+
             
-            //calculate price
-            //initialize base price
-            int total = 200;
+            
 
-            //add surface area price
-            int surfaceArea = desk.Width * desk.Depth;
-            if (surfaceArea > 1000)
-            {
-                total += (surfaceArea - 1000);
-            }
+        }
 
-            //add drawers price
-            total += desk.NumberOfDrawers * 50;
-
-            //add materials price
-
-            //add shipping price
-            //pull prices from price file
-            var priceFile = "RushOrderPrices.txt";
-
-            if (File.Exists(priceFile))
-            {
-
-                using (StreamReader reader = new StreamReader(priceFile))
-                {
-                    //shipping prices: a 3x3 array of the price grid
-                    int[,] shippingPrices = new int[3, 3];
-                    for (int i = 0; i < 3; i++)
-                    {
-                        for (int j = 0; j < 3; j++)
-                        {
-                            string line = reader.ReadLine();
-                            int price = int.Parse(line);
-                            shippingPrices[i, j] = price;
-                        }
-                    }
-
-                }
-            }
-
-
-            //question: how to link the double array up to the user's input??
-
+        private void saveToFile(DeskQuote deskQuote)
+        {
             //store quote in file
+
+            //make list to put json in
+            List<DeskQuote> deskQuotes = new List<DeskQuote>();
+
             string quotesFile = "deskQuotes.json";
             MemoryStream quotesStream = new MemoryStream();
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DeskQuote));
@@ -108,14 +79,25 @@ namespace MegaDesk_Morris
 
             if (File.Exists(quotesFile))
             {
-                //append to file
+                using (StreamReader reader = new StreamReader(quotesFile))
+                {
+                    //A string of the whole file
+                    string quotes = reader.ReadToEnd();
 
-            } else
-            {
-                //create new file
-                
+                    if (quotes.Length > 0)
+                    {
+                        //add stuff that exists in the list
+                        //string to list
+                        deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
+                    }
+                }
 
             }
+            //add to list of deskQuotes
+            deskQuotes.Add(deskQuote);
+
+            string serializedQuotes = JsonConvert.SerializeObject(deskQuotes);
+            File.WriteAllText(quotesFile, serializedQuotes);
         }
     }
 }
