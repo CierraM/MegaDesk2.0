@@ -31,7 +31,7 @@ namespace MegaDesk_Morris
             var todayDate = DateTime.Now;
             date.Text = todayDate.ToString("d MMMM yyyy");
         }
-        
+
         private void AddQuote_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((Form)this.Tag).Show();
@@ -46,22 +46,22 @@ namespace MegaDesk_Morris
         {
             var desk = new Desk();
             var deskQuote = new DeskQuote();
-            desk.Width = (int) deskWidthInput.Value;
-            desk.Depth = (int) deskDepthInput.Value;
+            desk.Width = (int)deskWidthInput.Value;
+            desk.Depth = (int)deskDepthInput.Value;
             desk.SurfaceMaterial = (DesktopMaterial)surfaceMaterialSelect.SelectedValue;
-            desk.NumberOfDrawers = (int) numberOfDrawersSelect.Value;
+            desk.NumberOfDrawers = (int)numberOfDrawersSelect.Value;
 
             deskQuote.QuoteDesk = desk;
             deskQuote.FirstName = firstNameInput.Text;
             deskQuote.LastName = lastNameInput.Text;
             deskQuote.Date = DateTime.Now;
-            deskQuote.Shipping = (rushOption) shippingSelect.SelectedValue;
+            deskQuote.Shipping = (rushOption)shippingSelect.SelectedValue;
 
             deskQuote.Price = deskQuote.calcPrice();
             this.saveToFile(deskQuote);
 
-            
-            
+
+
 
         }
 
@@ -79,6 +79,7 @@ namespace MegaDesk_Morris
 
             if (File.Exists(quotesFile))
             {
+                //take all the stuff out of the quotes file, put it in a list, reserialize the list and overwrite the file
                 using (StreamReader reader = new StreamReader(quotesFile))
                 {
                     //A string of the whole file
@@ -98,6 +99,12 @@ namespace MegaDesk_Morris
 
             string serializedQuotes = JsonConvert.SerializeObject(deskQuotes);
             File.WriteAllText(quotesFile, serializedQuotes);
+
+
         }
     }
 }
+
+
+
+
