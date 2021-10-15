@@ -12,15 +12,16 @@ namespace MegaDesk_Morris
 {
     public partial class MainMenu : Form
     {
+     
         public MainMenu()
         {
             InitializeComponent();
+            
         }
 
         private void addQuoteBtn_Click(object sender, EventArgs e)
         {
-            var addQuoteForm = new AddQuote();
-            addQuoteForm.Tag = this;
+            var addQuoteForm = new AddQuote(this);
             addQuoteForm.Show();
             this.Hide();
         }

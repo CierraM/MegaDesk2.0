@@ -15,9 +15,14 @@ namespace MegaDesk_Morris
 {
     public partial class AddQuote : Form
     {
-        public AddQuote()
+        Form _mainMenu;
+
+        public AddQuote(Form mainMenu)
         {
             InitializeComponent();
+
+            _mainMenu = mainMenu;
+             
             // populate materials combobox
             List<DesktopMaterial> materials = Enum.GetValues(typeof(DesktopMaterial)).Cast<DesktopMaterial>().ToList();
             surfaceMaterialSelect.DataSource = materials;
@@ -34,7 +39,8 @@ namespace MegaDesk_Morris
 
         private void AddQuote_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ((Form)this.Tag).Show();
+            _mainMenu.Show();
+            this.Hide();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -60,7 +66,10 @@ namespace MegaDesk_Morris
             deskQuote.calcPrice();
             this.saveToFile(deskQuote);
 
-
+            var displayQuoteForm = new DisplayQuote(deskQuote);
+            displayQuoteForm.Tag = this;
+            displayQuoteForm.Show();
+            this.Hide();
 
 
         }

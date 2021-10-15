@@ -12,10 +12,34 @@ namespace MegaDesk_Morris
 {
     public partial class DisplayQuote : Form
     {
-        public DisplayQuote()
+        private Form _displayQuote;
+
+        public DisplayQuote(DeskQuote deskQuote)
         {
             InitializeComponent();
+            
+
+            deskWidthInput.Value = deskQuote.QuoteDesk.Width;
+            deskDepthInput.Value = deskQuote.QuoteDesk.Depth;
+
+            surfaceMaterialSelect.SelectedValue = deskQuote.QuoteDesk.SurfaceMaterial;
+            numberOfDrawersSelect.Value = deskQuote.QuoteDesk.NumberOfDrawers;
+
+
+            firstNameInput.Text = deskQuote.FirstName;
+            lastNameInput.Text = deskQuote.LastName;
+            shippingSelect.SelectedValue = deskQuote.Shipping;
+            
+
+            date.Text = deskQuote.Date.ToString("dd/MM/yyyy");
+            price.Text = deskQuote.Price.ToString("c");
+
+            this.Enabled = false;
         }
+
+       
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -31,5 +55,9 @@ namespace MegaDesk_Morris
             this.Close();
         }
 
+        private void cancelBtn_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
