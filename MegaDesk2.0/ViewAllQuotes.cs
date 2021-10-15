@@ -34,7 +34,7 @@ namespace MegaDesk_Morris
         {
 
             //name of file, which is stored in bin
-            var quotesFile = "sample.json";
+            var quotesFile = "deskQuotes.json";
 
             if (File.Exists(quotesFile))
             {
@@ -50,8 +50,14 @@ namespace MegaDesk_Morris
                     dataGridView1.DataSource = deskQuotes.Select(d => new
                     {
                         //create a new object
+                        firstName = d.FirstName,
+                        lastName = d.LastName,
                         date = d.Date,
-                        depth = d.QuoteDesk.Width,
+                        shipping = d.Shipping,
+                        depth = d.QuoteDesk.Depth,
+                        width = d.QuoteDesk.Width,
+                        numberOfDrawers = d.QuoteDesk.NumberOfDrawers,
+                        surfaceMaterial = d.QuoteDesk.SurfaceMaterial,
                         quotePrice = d.Price.ToString("c") //format the price
                         //etc
                     }).ToList();

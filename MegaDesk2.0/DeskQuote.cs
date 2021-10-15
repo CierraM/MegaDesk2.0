@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,53 +17,82 @@ namespace MegaDesk_Morris
     }
     public class DeskQuote
     {
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Date { get; set; }
         public Desk QuoteDesk { get; set; }
         public rushOption Shipping { get; set; }
+        public int Price;
 
-        public Decimal Price { get; set; }
+        private const int _BASE_DESK_PRICE = 200;
+        private const int _COST_PER_SQUARE_INCH = 1;
+        private const int _COST_PER_DRAWER = 50;
+        private const int _COST_OAK = 200;
+        private const int _COST_LAMINATE = 100;
+        private const int _COST_PINE = 50;
+        private const int _COST_ROSEWOOD = 300;
+        private const int _COST_VENEER = 125;
 
-        public int calcPrice()
+        private int _surfaceArea;
+        private int _extraAreaCost;
+        private int _drawersCost;
+        private int _materialCost;
+        string priceFile = "RushOrderPrices.txt"; //pull prices from price file
+        int[,] shippingPrices = new int[3, 3];
+        private int _shippingCost;
+        private int _surfaceAreaIndex;
+
+
+        public void calcPrice()
         {
-            //calculate price
-            //initialize base price
-            int total = 200;
+            // Calculate surface area
+            _surfaceArea = this.QuoteDesk.Width * this.QuoteDesk.Depth;
 
-            //add surface area price
-            int surfaceArea = this.QuoteDesk.Width * this.QuoteDesk.Depth;
-            int surfaceAreaIndex;
-            if (surfaceArea < 1000)
+            // Calculate the surface area index
+            if (_surfaceArea < 1000)
             {
-                surfaceAreaIndex = 0;
+                _surfaceAreaIndex = 0;
             }
-            else if (surfaceArea > 1000 && surfaceArea < 2000){
-                surfaceAreaIndex = 1;
+            else if (_surfaceArea > 1000 && _surfaceArea < 2000)
+            {
+                _surfaceAreaIndex = 1;
             }
             else
             {
-                surfaceAreaIndex = 2;
+                _surfaceAreaIndex = 2;
             }
-            if (surfaceAreaIndex >= 1)
+
+            // Calculate the extra area cost
+            if (_surfaceArea > 1000) _extraAreaCost = (_surfaceArea - 1000) * _COST_PER_SQUARE_INCH;
+
+
+            // Calculate the drawers cost
+            _drawersCost = this.QuoteDesk.NumberOfDrawers * _COST_PER_DRAWER;
+
+            // Calculate the materials cost
+            switch (this.QuoteDesk.SurfaceMaterial)
             {
-                total += (surfaceArea - 1000);
+                case DesktopMaterial.Laminate:
+                    _materialCost = _COST_LAMINATE;
+                    break;
+                case DesktopMaterial.Oak:
+                    _materialCost = _COST_OAK;
+                    break;
+                case DesktopMaterial.Pine:
+                    _materialCost = _COST_PINE;
+                    break;
+                case DesktopMaterial.Rosewood:
+                    _materialCost = _COST_ROSEWOOD;
+                    break;
+                case DesktopMaterial.Veneer:
+                    _materialCost = _COST_VENEER;
+                    break;
+
             }
 
-            //add drawers price
-            total += this.QuoteDesk.NumberOfDrawers * 50;
-
-            //add materials price
-
-            //add shipping price
-            //pull prices from price file
-            var priceFile = "RushOrderPrices.txt";
-
-            int[,] shippingPrices = new int[3, 3];
+            // Gets and sets up shipping price 3x3 array based on file 
             if (File.Exists(priceFile))
             {
-
                 using (StreamReader reader = new StreamReader(priceFile))
                 {
                     //shipping prices: a 3x3 array of the price grid
@@ -79,47 +109,20 @@ namespace MegaDesk_Morris
                 }
             }
 
+            //Set shipping cost to 0 as default shipping
+            _shippingCost = 0;
 
-            //question: how to link the double array up to the user's input??
-            //switch statement on this.shipping
-
-
-            //int shippingCost = 0;
-            int shippingCost = 0;
-                
-            if (this.Shipping == rushOption.NoRush)
+            // if the the shippin is not the default, set cost based on shipping speed and surface area with the array.
+            if (this.Shipping != rushOption.NoRush)
             {
-                shippingCost = 0;
-            }
-            else
-            {
-                shippingCost = shippingPrices[(int)this.Shipping, surfaceAreaIndex];
+                _shippingCost = shippingPrices[(int)this.Shipping, _surfaceAreaIndex];
             }
 
             //Calculate added price for material
-            switch (this.QuoteDesk.SurfaceMaterial)
-            {
-                case DesktopMaterial.Laminate:
-                    total += 100;
-                    break;
-                case DesktopMaterial.Oak:
-                    total += 200;
-                    break;
-                case DesktopMaterial.Pine:
-                    total += 50;
-                    break;
-                case DesktopMaterial.Rosewood:
-                    total += 300;
-                    break;
-                case DesktopMaterial.Veneer:
-                    total += 125;
-                    break;
+            this.Price = _BASE_DESK_PRICE + _extraAreaCost + _materialCost + _shippingCost + _drawersCost;
 
-            }
-
-            total += shippingCost;
-
-            return total;
+            //Return calculated sum to the DeskQuote object
+            
         }
     }
 }

@@ -57,7 +57,7 @@ namespace MegaDesk_Morris
             deskQuote.Date = DateTime.Now;
             deskQuote.Shipping = (rushOption)shippingSelect.SelectedValue;
 
-            deskQuote.Price = deskQuote.calcPrice();
+            deskQuote.calcPrice();
             this.saveToFile(deskQuote);
 
 
