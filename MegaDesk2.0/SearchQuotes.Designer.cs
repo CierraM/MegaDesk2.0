@@ -43,6 +43,7 @@ namespace MegaDesk_Morris
             this.searchByMaterialCombo.Name = "searchByMaterialCombo";
             this.searchByMaterialCombo.Size = new System.Drawing.Size(584, 21);
             this.searchByMaterialCombo.TabIndex = 3;
+            this.searchByMaterialCombo.SelectedIndexChanged += new System.EventHandler(this.searchByMaterialCombo_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -50,7 +51,7 @@ namespace MegaDesk_Morris
             this.label1.Font = new System.Drawing.Font("Yu Gothic", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(85, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 35);
+            this.label1.Size = new System.Drawing.Size(117, 18);
             this.label1.TabIndex = 4;
             this.label1.Text = "Surface Material";
             // 
